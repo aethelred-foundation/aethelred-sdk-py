@@ -1,0 +1,102 @@
+[build-system]
+requires = []
+build-backend = "aethelred_build_backend"
+backend-path = ["build_backend"]
+
+[project]
+name = "aethelred-sdk"
+version = "1.0.0"
+description = "Official Python SDK for Aethelred AI Blockchain"
+readme = "README.md"
+license = { text = "Apache-2.0" }
+requires-python = ">=3.9"
+authors = [
+    { name = "Aethelred Team", email = "developers@aethelred.org" }
+]
+keywords = [
+    "aethelred",
+    "blockchain",
+    "ai",
+    "machine-learning",
+    "cryptography",
+    "post-quantum",
+    "tee",
+    "zkml"
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Security :: Cryptography",
+]
+dependencies = [
+    "httpx>=0.25.0",
+    "pydantic>=2.0.0",
+    "typing-extensions>=4.0.0",
+    "python-dateutil>=2.8.0",
+    "tenacity>=8.0.0",
+    "cryptography>=41.0.0",
+    "ecdsa>=0.18.0",
+    "pynacl>=1.5.0",
+    "websockets>=12.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-asyncio>=0.21.0",
+    "pytest-cov>=4.0.0",
+    "black>=23.0.0",
+    "ruff>=0.1.0",
+    "mypy>=1.0.0",
+    "pre-commit>=3.0.0",
+]
+ml = [
+    "torch>=2.0.0",
+    "tensorflow>=2.13.0",
+    "onnx>=1.14.0",
+    "numpy>=1.24.0",
+]
+integrations = [
+    "fastapi>=0.110.0",
+    "starlette>=0.36.0",
+    "transformers>=4.38.0",
+    "langchain-core>=0.2.0",
+]
+pqc = [
+    "liboqs-python>=0.9.0",
+]
+all = [
+    "aethelred-sdk[dev,ml,integrations,pqc]",
+]
+
+[project.urls]
+Homepage = "https://github.com/AethelredFoundation/AethelredMVP/tree/main/sdk/python"
+Documentation = "https://github.com/AethelredFoundation/AethelredMVP/tree/main/sdk/python#readme"
+Repository = "https://github.com/AethelredFoundation/AethelredMVP"
+Issues = "https://github.com/AethelredFoundation/AethelredMVP/issues"
+
+[project.scripts]
+aethelred = "aethelred.cli:main"
+
+[tool.black]
+line-length = 100
+
+[tool.ruff]
+line-length = 100
+select = ["E", "F", "I", "N", "W", "UP"]
+
+[tool.mypy]
+python_version = "3.9"
+strict = true
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
