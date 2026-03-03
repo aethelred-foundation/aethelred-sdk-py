@@ -85,7 +85,7 @@ class DIDMethod(str, Enum):
     WEB = "web"  # did:web
     ION = "ion"  # did:ion (Bitcoin-anchored)
     ETHR = "ethr"  # did:ethr (Ethereum)
-    AETHELRED = "aeth"  # did:aeth (Aethelred native)
+    AETHELRED = "aethel"  # did:aethel (Aethelred native)
 
 
 @dataclass

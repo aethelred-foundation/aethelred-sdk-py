@@ -46,7 +46,7 @@ class TestDIDMethod:
     def test_values(self):
         assert DIDMethod.KEY == "key"
         assert DIDMethod.WEB == "web"
-        assert DIDMethod.AETHELRED == "aeth"
+        assert DIDMethod.AETHELRED == "aethel"
 
 
 class TestVerificationResult:

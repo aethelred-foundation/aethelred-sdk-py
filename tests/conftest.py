@@ -24,7 +24,7 @@ class MockClient:
     """Mock Aethelred client for testing without network access."""
 
     def __init__(self) -> None:
-        self.address = "aeth1mockaddress1234567890abcdef"
+        self.address = "aethel1mockaddress1234567890abcdef"
         self._config = MagicMock()
         self._config.endpoint = "https://mock.aethelred.local"
         self._requests: list[dict] = []
@@ -111,7 +111,7 @@ def _mock_oracle_node() -> dict:
     return {
         "node_id": "node_1",
         "name": "TestOracle",
-        "operator": "aeth1operator",
+        "operator": "aethel1operator",
         "endpoint": "https://oracle.test",
         "supported_feeds": ["market_data/btc_usd"],
         "tee_platform": "TEE_PLATFORM_INTEL_SGX",
@@ -126,7 +126,7 @@ def _mock_model_data() -> dict:
         "model_id": "model_mock123",
         "name": "test-model",
         "version": "1.0.0",
-        "owner": "aeth1mockowner",
+        "owner": "aethel1mockowner",
         "model_hash": "aa" * 32,
         "circuit_hash": "bb" * 32,
         "verification_key_hash": "cc" * 32,

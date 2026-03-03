@@ -16,7 +16,7 @@ from pydantic import BaseModel, Field, field_validator
 
 # ============ Basic Types ============
 
-Address = str  # Aethelred address (aeth1...)
+Address = str  # Aethelred address (aethel1...)
 Hash = bytes  # 32-byte hash
 TxHash = str  # Transaction hash
 

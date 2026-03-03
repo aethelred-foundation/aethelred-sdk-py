@@ -36,7 +36,7 @@ class TestComputeJob:
     def test_create_minimal(self) -> None:
         job = ComputeJob(
             id="job_1",
-            creator="aeth1creator",
+            creator="aethel1creator",
             model_hash=b"\x00" * 32,
             input_hash=b"\x01" * 32,
         )
@@ -104,6 +104,6 @@ class TestValidatorStats:
     """Test validator statistics."""
 
     def test_defaults(self) -> None:
-        stats = ValidatorStats(address="aeth1validator")
+        stats = ValidatorStats(address="aethel1validator")
         assert stats.jobs_completed == 0
         assert stats.reputation_score == 0.0

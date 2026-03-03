@@ -111,8 +111,8 @@ class PIIEntityType(str, Enum):
     AGE = "AGE"
 
     # Aethelred-specific
-    AETH_ADDRESS = "AETH_ADDRESS"  # Aethelred wallet address
-    AETH_TX_HASH = "AETH_TX_HASH"  # Transaction hash
+    AETHEL_ADDRESS = "AETHEL_ADDRESS"  # Aethelred wallet address
+    AETHEL_TX_HASH = "AETHEL_TX_HASH"  # Transaction hash
 
 
 class ComplianceFramework(str, Enum):
@@ -394,8 +394,8 @@ class CustomRecognizer(ABC):
 class AethelredAddressRecognizer(CustomRecognizer):
     """Recognizer for Aethelred wallet addresses."""
 
-    # Aethelred addresses: aeth1[39 alphanumeric characters]
-    ADDRESS_PATTERN = re.compile(r'\baeth1[a-z0-9]{39}\b', re.IGNORECASE)
+    # Aethelred addresses: aethel1[39 alphanumeric characters]
+    ADDRESS_PATTERN = re.compile(r'\baethel1[a-z0-9]{39}\b', re.IGNORECASE)
 
     @property
     def name(self) -> str:
@@ -403,7 +403,7 @@ class AethelredAddressRecognizer(CustomRecognizer):
 
     @property
     def supported_entities(self) -> List[str]:
-        return [PIIEntityType.AETH_ADDRESS.value]
+        return [PIIEntityType.AETHEL_ADDRESS.value]
 
     def analyze(
         self,
@@ -414,7 +414,7 @@ class AethelredAddressRecognizer(CustomRecognizer):
 
         for match in self.ADDRESS_PATTERN.finditer(text):
             findings.append(PIIFinding(
-                entity_type=PIIEntityType.AETH_ADDRESS.value,
+                entity_type=PIIEntityType.AETHEL_ADDRESS.value,
                 start=match.start(),
                 end=match.end(),
                 original_text=match.group(),
@@ -437,7 +437,7 @@ class AethelredTxHashRecognizer(CustomRecognizer):
 
     @property
     def supported_entities(self) -> List[str]:
-        return [PIIEntityType.AETH_TX_HASH.value]
+        return [PIIEntityType.AETHEL_TX_HASH.value]
 
     def analyze(
         self,
@@ -448,7 +448,7 @@ class AethelredTxHashRecognizer(CustomRecognizer):
 
         for match in self.TX_HASH_PATTERN.finditer(text):
             findings.append(PIIFinding(
-                entity_type=PIIEntityType.AETH_TX_HASH.value,
+                entity_type=PIIEntityType.AETHEL_TX_HASH.value,
                 start=match.start(),
                 end=match.end(),
                 original_text=match.group(),

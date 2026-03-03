@@ -145,8 +145,8 @@ class HybridSigner:
 
     Example:
         >>> signer = HybridSigner()
-        >>> sig = signer.sign(b"transfer 100 AETH to 0x...")
-        >>> assert signer.verify(b"transfer 100 AETH to 0x...", sig)
+        >>> sig = signer.sign(b"transfer 100 AETHEL to 0x...")
+        >>> assert signer.verify(b"transfer 100 AETHEL to 0x...", sig)
     """
 
     def __init__(

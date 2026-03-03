@@ -43,33 +43,33 @@ BLOCKCHAIN INTEGRATION:
     - Post-quantum cryptography (Dilithium, Kyber)
 
 Quick Start:
-    >>> import aethelred as aeth
+    >>> import aethelred as aethel
     >>>
     >>> # Initialize runtime
-    >>> aeth.runtime.initialize(enable_profiling=True)
+    >>> aethel.runtime.initialize(enable_profiling=True)
     >>>
     >>> # Create tensors on GPU
-    >>> with aeth.Device.gpu():
-    ...     x = aeth.Tensor.randn(1024, 1024)
-    ...     y = aeth.Tensor.randn(1024, 1024)
+    >>> with aethel.Device.gpu():
+    ...     x = aethel.Tensor.randn(1024, 1024)
+    ...     y = aethel.Tensor.randn(1024, 1024)
     ...     z = x @ y  # Lazy evaluation
     ...     z.realize()  # Execute
     >>>
     >>> # Neural network
-    >>> model = aeth.nn.Sequential(
-    ...     aeth.nn.Linear(784, 256),
-    ...     aeth.nn.ReLU(),
-    ...     aeth.nn.Linear(256, 10)
+    >>> model = aethel.nn.Sequential(
+    ...     aethel.nn.Linear(784, 256),
+    ...     aethel.nn.ReLU(),
+    ...     aethel.nn.Linear(256, 10)
     ... )
     >>>
     >>> # Distributed training
-    >>> model = aeth.distributed.DistributedDataParallel(model)
+    >>> model = aethel.distributed.DistributedDataParallel(model)
     >>>
     >>> # Quantize for deployment
-    >>> model_int8 = aeth.quantize.quantize_dynamic(model)
+    >>> model_int8 = aethel.quantize.quantize_dynamic(model)
     >>>
     >>> # Submit to blockchain
-    >>> client = aeth.AethelredClient("https://rpc.mainnet.aethelred.org")
+    >>> client = aethel.AethelredClient("https://rpc.mainnet.aethelred.org")
     >>> job = client.jobs.submit(model=model, input=data)
     >>> seal = client.seals.create(job_id=job.job_id)
 
@@ -189,9 +189,9 @@ from aethelred.utils import (
     sha256,
     sha256_hex,
     keccak256,
-    to_uaeth,
-    from_uaeth,
-    format_aeth,
+    to_uaethel,
+    from_uaethel,
+    format_aethel,
     is_valid_address,
     encode_base64,
     decode_base64,
@@ -430,9 +430,9 @@ __all__ = [
     "sha256",
     "sha256_hex",
     "keccak256",
-    "to_uaeth",
-    "from_uaeth",
-    "format_aeth",
+    "to_uaethel",
+    "from_uaethel",
+    "format_aethel",
     "is_valid_address",
     "encode_base64",
     "decode_base64",
@@ -619,8 +619,8 @@ def initialize(
     - Enable profiling if requested
 
     Example:
-        >>> import aethelred as aeth
-        >>> runtime = aeth.initialize(enable_profiling=True)
+        >>> import aethelred as aethel
+        >>> runtime = aethel.initialize(enable_profiling=True)
         >>> print(f"Found {len(runtime.devices)} devices")
     """
     if "Runtime" not in globals():

@@ -152,7 +152,7 @@ class TestRegisteredModelSerialization:
             model_id="m1",
             name="test",
             version="1.0.0",
-            owner="aeth1owner",
+            owner="aethel1owner",
             model_hash="aa" * 32,
             circuit_hash="bb" * 32,
             verification_key_hash="cc" * 32,

@@ -1650,7 +1650,7 @@ class TestProvenanceEnums:
     def test_did_method(self) -> None:
         from aethelred.oracles.provenance import DIDMethod
         assert DIDMethod.KEY.value == "key"
-        assert DIDMethod.AETHELRED.value == "aeth"
+        assert DIDMethod.AETHELRED.value == "aethel"
 
 
 class TestProvenanceVerificationResult:

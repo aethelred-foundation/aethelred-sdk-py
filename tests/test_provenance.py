@@ -32,7 +32,7 @@ class TestDIDMethod:
 
     def test_methods(self) -> None:
         assert DIDMethod.KEY.value == "key"
-        assert DIDMethod.AETHELRED.value == "aeth"
+        assert DIDMethod.AETHELRED.value == "aethel"
         assert DIDMethod.ETHR.value == "ethr"
 
 

@@ -25,9 +25,9 @@ __all__ = [
     "keccak256",
     "bytes_to_hex",
     "hex_to_bytes",
-    "to_uaeth",
-    "from_uaeth",
-    "format_aeth",
+    "to_uaethel",
+    "from_uaethel",
+    "format_aethel",
     "is_valid_address",
     "encode_base64",
     "decode_base64",
@@ -92,24 +92,24 @@ def hex_to_bytes(hex_str: str) -> bytes:
     return bytes.fromhex(hex_str)
 
 
-def to_uaeth(amount: Union[int, float]) -> int:
-    """Convert AETH to uaeth (1e6 base units)."""
+def to_uaethel(amount: Union[int, float]) -> int:
+    """Convert AETHEL to uaethel (1e6 base units)."""
     return int(round(float(amount) * 1_000_000))
 
 
-def from_uaeth(amount_uaeth: int) -> float:
-    """Convert uaeth to AETH."""
-    return float(amount_uaeth) / 1_000_000.0
+def from_uaethel(amount_uaethel: int) -> float:
+    """Convert uaethel to AETHEL."""
+    return float(amount_uaethel) / 1_000_000.0
 
 
-def format_aeth(amount_uaeth: int, decimals: int = 6) -> str:
-    """Format base units as human-readable AETH string."""
-    return f"{from_uaeth(amount_uaeth):.{decimals}f} AETH"
+def format_aethel(amount_uaethel: int, decimals: int = 6) -> str:
+    """Format base units as human-readable AETHEL string."""
+    return f"{from_uaethel(amount_uaethel):.{decimals}f} AETHEL"
 
 
 def is_valid_address(address: str) -> bool:
     """Lightweight Aethelred bech32-style address shape validation."""
-    return isinstance(address, str) and address.startswith("aeth1") and len(address) >= 16
+    return isinstance(address, str) and address.startswith("aethel1") and len(address) >= 16
 
 
 def encode_base64(data: bytes) -> str:

@@ -61,7 +61,7 @@ class StubClient:
                     "job_id": "job_1",
                     "model_hash": "aa" * 32,
                     "status": "SEAL_STATUS_ACTIVE",
-                    "requester": "aeth1user",
+                    "requester": "aethel1user",
                 }
             }
         if "/seals/by_model" in path:
@@ -72,7 +72,7 @@ class StubClient:
                         "job_id": "job_m1",
                         "model_hash": "bb" * 32,
                         "status": "SEAL_STATUS_ACTIVE",
-                        "requester": "aeth1user",
+                        "requester": "aethel1user",
                     }
                 ]
             }
@@ -84,7 +84,7 @@ class StubClient:
                         "job_id": "job_l1",
                         "model_hash": "cc" * 32,
                         "status": "SEAL_STATUS_ACTIVE",
-                        "requester": "aeth1user",
+                        "requester": "aethel1user",
                     }
                 ]
             }
@@ -147,9 +147,9 @@ class TestSealsModule:
 
     @pytest.mark.asyncio
     async def test_list_with_requester(self, module: SealsModule, stub: StubClient) -> None:
-        await module.list(requester="aeth1user")
+        await module.list(requester="aethel1user")
         params = stub.gets[-1][1]
-        assert params["requester"] == "aeth1user"
+        assert params["requester"] == "aethel1user"
 
     @pytest.mark.asyncio
     async def test_list_with_model_hash(self, module: SealsModule, stub: StubClient) -> None:
@@ -175,13 +175,13 @@ class TestSealsModule:
     async def test_list_with_all_filters(self, module: SealsModule, stub: StubClient) -> None:
         page = PageRequest(offset=0, limit=10)
         await module.list(
-            requester="aeth1user",
+            requester="aethel1user",
             model_hash="dd" * 32,
             status=SealStatus.REVOKED,
             pagination=page,
         )
         params = stub.gets[-1][1]
-        assert params["requester"] == "aeth1user"
+        assert params["requester"] == "aethel1user"
         assert params["model_hash"] == "dd" * 32
         assert params["status"] == SealStatus.REVOKED.value
 

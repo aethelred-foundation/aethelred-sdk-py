@@ -32,7 +32,7 @@ class TestWalletCreation:
 
     def test_creates_with_defaults(self) -> None:
         wallet = DualKeyWallet()
-        assert wallet.address.startswith("aeth1")
+        assert wallet.address.startswith("aethel1")
         wallet.close()
 
     def test_address_is_deterministic_for_same_keys(self) -> None:
@@ -48,11 +48,11 @@ class TestWalletCreation:
     def test_address_bech32_format(self) -> None:
         wallet = DualKeyWallet()
         addr = wallet.address
-        assert addr.startswith("aeth1")
+        assert addr.startswith("aethel1")
         assert len(addr) > 10
         # Bech32 charset: qpzry9x8gf2tvdw0s3jn54khce6mua7l
         valid_chars = set("qpzry9x8gf2tvdw0s3jn54khce6mua7l")
-        assert all(c in valid_chars for c in addr[5:])  # After "aeth1"
+        assert all(c in valid_chars for c in addr[5:])  # After "aethel1"
         wallet.close()
 
     def test_different_wallets_have_different_addresses(self) -> None:
@@ -176,15 +176,15 @@ class TestBech32:
 
     def test_encode_deterministic(self) -> None:
         data = b"\x01\x02\x03\x04\x05\x06\x07\x08\x09\x0a" * 2
-        addr1 = bech32_encode("aeth", data)
-        addr2 = bech32_encode("aeth", data)
+        addr1 = bech32_encode("aethel", data)
+        addr2 = bech32_encode("aethel", data)
         assert addr1 == addr2
 
     def test_different_data_different_address(self) -> None:
         d1 = b"\x00" * 20
         d2 = b"\xff" * 20
-        assert bech32_encode("aeth", d1) != bech32_encode("aeth", d2)
+        assert bech32_encode("aethel", d1) != bech32_encode("aethel", d2)
 
     def test_prefix(self) -> None:
-        addr = bech32_encode("aeth", b"\x00" * 20)
-        assert addr.startswith("aeth1")
+        addr = bech32_encode("aethel", b"\x00" * 20)
+        assert addr.startswith("aethel1")

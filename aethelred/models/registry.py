@@ -106,7 +106,7 @@ class ModelRegistry:
         >>> model = await registry.get("model_abc123")
         >>>
         >>> # List models
-        >>> models = await registry.list(owner="aeth1...")
+        >>> models = await registry.list(owner="aethel1...")
     """
 
     def __init__(self, client: Any):

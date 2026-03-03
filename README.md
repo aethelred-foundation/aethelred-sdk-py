@@ -71,7 +71,7 @@ client.seal.get_seal_by_job(job_id)
 client.seal.verify_seal(seal_id, output_hash)
 
 # Bank module
-client.bank.send(from_wallet, to_address, amount_uaeth)
+client.bank.send(from_wallet, to_address, amount_uaethel)
 client.bank.balance(address)
 ```
 

@@ -113,7 +113,7 @@ class TestSealsModule:
         mock_client.get = AsyncMock(return_value={"seals": []})
         module = SealsModule(mock_client)
         result = await module.list(
-            requester="aeth1abc",
+            requester="aethel1abc",
             model_hash="hash123",
             status=SealStatus.ACTIVE,
             pagination=PageRequest(limit=10),
@@ -121,7 +121,7 @@ class TestSealsModule:
         assert result == []
         call_args = mock_client.get.call_args
         params = call_args[1]["params"]
-        assert params["requester"] == "aeth1abc"
+        assert params["requester"] == "aethel1abc"
         assert params["model_hash"] == "hash123"
         assert params["status"] == SealStatus.ACTIVE.value
 
@@ -322,7 +322,7 @@ class TestJobsModule:
         mock_client.get = AsyncMock(return_value={
             "job": {
                 "id": "job-123",
-                "creator": "aeth1abc",
+                "creator": "aethel1abc",
                 "model_hash": b"\x01" * 32,
                 "input_hash": b"\x02" * 32,
             }
@@ -337,7 +337,7 @@ class TestJobsModule:
         mock_client = MagicMock()
         mock_client.get = AsyncMock(return_value={
             "id": "job-123",
-            "creator": "aeth1abc",
+            "creator": "aethel1abc",
             "model_hash": b"\x01" * 32,
             "input_hash": b"\x02" * 32,
         })
@@ -367,14 +367,14 @@ class TestJobsModule:
         module = JobsModule(mock_client)
         result = await module.list(
             status=JobStatus.PENDING,
-            creator="aeth1abc",
+            creator="aethel1abc",
             pagination=PageRequest(limit=5),
         )
         assert result == []
         call_args = mock_client.get.call_args
         params = call_args[1]["params"]
         assert params["status"] == JobStatus.PENDING.value
-        assert params["creator"] == "aeth1abc"
+        assert params["creator"] == "aethel1abc"
 
     @pytest.mark.asyncio
     async def test_list_pending(self):
@@ -431,7 +431,7 @@ class TestJobsModule:
         mock_client = MagicMock()
         mock_client.get = AsyncMock(return_value={
             "id": "job-123",
-            "creator": "aeth1abc",
+            "creator": "aethel1abc",
             "model_hash": b"\x01" * 32,
             "input_hash": b"\x02" * 32,
             "status": JobStatus.COMPLETED,
@@ -447,7 +447,7 @@ class TestJobsModule:
         mock_client = MagicMock()
         mock_client.get = AsyncMock(return_value={
             "id": "job-123",
-            "creator": "aeth1abc",
+            "creator": "aethel1abc",
             "model_hash": b"\x01" * 32,
             "input_hash": b"\x02" * 32,
             "status": JobStatus.FAILED,
@@ -463,7 +463,7 @@ class TestJobsModule:
         mock_client = MagicMock()
         mock_client.get = AsyncMock(return_value={
             "id": "job-123",
-            "creator": "aeth1abc",
+            "creator": "aethel1abc",
             "model_hash": b"\x01" * 32,
             "input_hash": b"\x02" * 32,
             "status": JobStatus.CANCELLED,
@@ -481,7 +481,7 @@ class TestJobsModule:
         # Always return PENDING
         mock_client.get = AsyncMock(return_value={
             "id": "job-123",
-            "creator": "aeth1abc",
+            "creator": "aethel1abc",
             "model_hash": b"\x01" * 32,
             "input_hash": b"\x02" * 32,
             "status": JobStatus.PENDING,
@@ -504,14 +504,14 @@ class TestJobsModule:
             if call_count < 3:
                 return {
                     "id": "job-123",
-                    "creator": "aeth1abc",
+                    "creator": "aethel1abc",
                     "model_hash": b"\x01" * 32,
                     "input_hash": b"\x02" * 32,
                     "status": JobStatus.COMPUTING,
                 }
             return {
                 "id": "job-123",
-                "creator": "aeth1abc",
+                "creator": "aethel1abc",
                 "model_hash": b"\x01" * 32,
                 "input_hash": b"\x02" * 32,
                 "status": JobStatus.COMPLETED,
@@ -615,13 +615,13 @@ class TestValidatorsModule:
         from aethelred.validators import ValidatorsModule
         mock_client = MagicMock()
         mock_client.get = AsyncMock(return_value={
-            "address": "aeth1validator",
+            "address": "aethel1validator",
             "jobs_completed": 100,
             "reputation_score": 0.95,
         })
         module = ValidatorsModule(mock_client)
-        stats = await module.get_stats("aeth1validator")
-        assert stats.address == "aeth1validator"
+        stats = await module.get_stats("aethel1validator")
+        assert stats.address == "aethel1validator"
         assert stats.jobs_completed == 100
 
     @pytest.mark.asyncio
@@ -660,7 +660,7 @@ class TestValidatorsModule:
             zkml_supported=True,
             max_model_size_mb=1024,
         )
-        result = await module.register_capability("aeth1validator", cap)
+        result = await module.register_capability("aethel1validator", cap)
         assert result is True
         call_args = mock_client.post.call_args
         assert "capability" in call_args[0][0]

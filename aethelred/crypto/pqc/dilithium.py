@@ -144,7 +144,7 @@ class DilithiumSigner:
         >>> signer = DilithiumSigner()  # Level 3 by default
         >>>
         >>> # Sign a message
-        >>> message = b"Transaction: Transfer 100 AETH to aeth1..."
+        >>> message = b"Transaction: Transfer 100 AETHEL to aethel1..."
         >>> signature = signer.sign(message)
         >>>
         >>> # Verify signature

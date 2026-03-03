@@ -12,7 +12,7 @@ class TestValidatorStats:
 
     def test_create(self) -> None:
         stats = ValidatorStats(
-            address="aeth1val123",
+            address="aethel1val123",
             jobs_completed=100,
             reputation_score=0.95,
         )
@@ -20,7 +20,7 @@ class TestValidatorStats:
         assert stats.reputation_score == 0.95
 
     def test_defaults(self) -> None:
-        stats = ValidatorStats(address="aeth1v")
+        stats = ValidatorStats(address="aethel1v")
         assert stats.slashing_events == 0
         assert stats.average_latency_ms == 0
 

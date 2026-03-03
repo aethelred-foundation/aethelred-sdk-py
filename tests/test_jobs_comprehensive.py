@@ -59,7 +59,7 @@ class StubClient:
             return {
                 "job": {
                     "id": "job_abc",
-                    "creator": "aeth1creator",
+                    "creator": "aethel1creator",
                     "model_hash": "11" * 32,
                     "input_hash": "22" * 32,
                     "status": "JOB_STATUS_PENDING",
@@ -71,7 +71,7 @@ class StubClient:
                 "jobs": [
                     {
                         "id": "job_p1",
-                        "creator": "aeth1cr",
+                        "creator": "aethel1cr",
                         "model_hash": "33" * 32,
                         "input_hash": "44" * 32,
                         "status": "JOB_STATUS_PENDING",
@@ -84,7 +84,7 @@ class StubClient:
                 "jobs": [
                     {
                         "id": "job_l1",
-                        "creator": "aeth1cr",
+                        "creator": "aethel1cr",
                         "model_hash": "55" * 32,
                         "input_hash": "66" * 32,
                         "status": "JOB_STATUS_COMPLETED",
@@ -150,7 +150,7 @@ class TestJobsModule:
         job = await module.get("job_abc")
         assert isinstance(job, ComputeJob)
         assert job.id == "job_abc"
-        assert job.creator == "aeth1creator"
+        assert job.creator == "aethel1creator"
 
     @pytest.mark.asyncio
     async def test_list_no_filters(self, module: JobsModule) -> None:
@@ -166,9 +166,9 @@ class TestJobsModule:
 
     @pytest.mark.asyncio
     async def test_list_with_creator(self, module: JobsModule, stub: StubClient) -> None:
-        await module.list(creator="aeth1creator")
+        await module.list(creator="aethel1creator")
         params = stub.gets[-1][1]
-        assert params["creator"] == "aeth1creator"
+        assert params["creator"] == "aethel1creator"
 
     @pytest.mark.asyncio
     async def test_list_with_pagination(self, module: JobsModule, stub: StubClient) -> None:
@@ -183,12 +183,12 @@ class TestJobsModule:
         page = PageRequest(offset=0, limit=20)
         await module.list(
             status=JobStatus.PENDING,
-            creator="aeth1user",
+            creator="aethel1user",
             pagination=page,
         )
         params = stub.gets[-1][1]
         assert params["status"] == JobStatus.PENDING.value
-        assert params["creator"] == "aeth1user"
+        assert params["creator"] == "aethel1user"
         assert params["limit"] == 20
 
     @pytest.mark.asyncio
@@ -230,7 +230,7 @@ class TestJobsModule:
                 return {
                     "job": {
                         "id": "job_done",
-                        "creator": "aeth1cr",
+                        "creator": "aethel1cr",
                         "model_hash": "11" * 32,
                         "input_hash": "22" * 32,
                         "status": "JOB_STATUS_COMPLETED",
@@ -252,7 +252,7 @@ class TestJobsModule:
                 return {
                     "job": {
                         "id": "job_f",
-                        "creator": "aeth1cr",
+                        "creator": "aethel1cr",
                         "model_hash": "11" * 32,
                         "input_hash": "22" * 32,
                         "status": "JOB_STATUS_FAILED",
@@ -273,7 +273,7 @@ class TestJobsModule:
                 return {
                     "job": {
                         "id": "job_c",
-                        "creator": "aeth1cr",
+                        "creator": "aethel1cr",
                         "model_hash": "11" * 32,
                         "input_hash": "22" * 32,
                         "status": "JOB_STATUS_CANCELLED",
@@ -294,7 +294,7 @@ class TestJobsModule:
                 return {
                     "job": {
                         "id": "job_p",
-                        "creator": "aeth1cr",
+                        "creator": "aethel1cr",
                         "model_hash": "11" * 32,
                         "input_hash": "22" * 32,
                         "status": "JOB_STATUS_COMPUTING",
@@ -319,7 +319,7 @@ class TestJobsModule:
                 return {
                     "job": {
                         "id": "job_t",
-                        "creator": "aeth1cr",
+                        "creator": "aethel1cr",
                         "model_hash": "11" * 32,
                         "input_hash": "22" * 32,
                         "status": status,
@@ -384,7 +384,7 @@ class TestSyncJobsModule:
                 return {
                     "job": {
                         "id": "job_sync",
-                        "creator": "aeth1cr",
+                        "creator": "aethel1cr",
                         "model_hash": "11" * 32,
                         "input_hash": "22" * 32,
                         "status": "JOB_STATUS_COMPLETED",

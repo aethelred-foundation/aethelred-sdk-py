@@ -4,7 +4,7 @@ Covers uncovered paths in:
 - core/exceptions.py (all exception subclasses, to_dict, repr)
 - core/config.py (Config factory methods, properties, Network enum)
 - core/types.py (Circuit, ZKProof, Proof, ModelInfo, DataProvenance, etc.)
-- utils (keccak256, to_uaeth, from_uaeth, format_aeth, is_valid_address, base64, sha256)
+- utils (keccak256, to_uaethel, from_uaethel, format_aethel, is_valid_address, base64, sha256)
 - crypto/fallback.py (BackendInfo, protocol checks)
 - crypto/pqc/kyber.py (KyberKeyPair, KyberCiphertext, utility functions)
 - crypto/pqc/dilithium.py (DilithiumKeyPair, DilithiumSignature, utility functions)
@@ -286,7 +286,7 @@ class TestAdditionalTypes:
 
     def test_model_info(self) -> None:
         from aethelred.core.types import ModelInfo
-        m = ModelInfo(model_hash="abc", name="test-model", owner="aeth1owner")
+        m = ModelInfo(model_hash="abc", name="test-model", owner="aethel1owner")
         assert m.name == "test-model"
 
     def test_data_source_type(self) -> None:
@@ -432,11 +432,11 @@ class TestAdditionalTypes:
     def test_validator_attestation(self) -> None:
         from aethelred.core.types import ValidatorAttestation
         va = ValidatorAttestation(
-            validator_address="aeth1val",
+            validator_address="aethel1val",
             signature=b"sig",
             timestamp=datetime.now(timezone.utc),
         )
-        assert va.validator_address == "aeth1val"
+        assert va.validator_address == "aethel1val"
 
     def test_zkml_proof(self) -> None:
         from aethelred.core.types import ZKMLProof, ProofSystem
@@ -469,24 +469,24 @@ class TestAdditionalUtils:
         result = keccak256("hello")
         assert len(result) == 32
 
-    def test_to_uaeth(self) -> None:
-        from aethelred.utils import to_uaeth
-        assert to_uaeth(1) == 1_000_000
-        assert to_uaeth(0.5) == 500_000
+    def test_to_uaethel(self) -> None:
+        from aethelred.utils import to_uaethel
+        assert to_uaethel(1) == 1_000_000
+        assert to_uaethel(0.5) == 500_000
 
-    def test_from_uaeth(self) -> None:
-        from aethelred.utils import from_uaeth
-        assert from_uaeth(1_000_000) == 1.0
-        assert from_uaeth(500_000) == 0.5
+    def test_from_uaethel(self) -> None:
+        from aethelred.utils import from_uaethel
+        assert from_uaethel(1_000_000) == 1.0
+        assert from_uaethel(500_000) == 0.5
 
-    def test_format_aeth(self) -> None:
-        from aethelred.utils import format_aeth
-        assert "AETH" in format_aeth(1_000_000)
-        assert "1.000000" in format_aeth(1_000_000)
+    def test_format_aethel(self) -> None:
+        from aethelred.utils import format_aethel
+        assert "AETHEL" in format_aethel(1_000_000)
+        assert "1.000000" in format_aethel(1_000_000)
 
     def test_is_valid_address(self) -> None:
         from aethelred.utils import is_valid_address
-        assert is_valid_address("aeth1qpzry9x8gf2tvdw")
+        assert is_valid_address("aethel1qpzry9x8gf2tvdw")
         assert not is_valid_address("invalid")
         assert not is_valid_address("eth1short")
         assert not is_valid_address("")
@@ -1449,7 +1449,7 @@ class TestModelRegistry:
             model_id="m1",
             name="test-model",
             version="1.0.0",
-            owner="aeth1owner",
+            owner="aethel1owner",
             model_hash="abc",
             circuit_hash="def",
             verification_key_hash="ghi",
@@ -1530,8 +1530,8 @@ class TestWalletAdditional:
 
     def test_bech32_encode(self) -> None:
         from aethelred.core.wallet import bech32_encode
-        result = bech32_encode("aeth", b"\x00" * 20)
-        assert result.startswith("aeth1")
+        result = bech32_encode("aethel", b"\x00" * 20)
+        assert result.startswith("aethel1")
 
     def test_wallet_close(self) -> None:
         from aethelred.core.wallet import DualKeyWallet
@@ -1576,7 +1576,7 @@ class TestWalletAdditional:
     def test_create_wallet_function(self) -> None:
         from aethelred.core.wallet import create_wallet
         wallet = create_wallet()
-        assert wallet.address.startswith("aeth1")
+        assert wallet.address.startswith("aethel1")
 
     def test_address_from_public_keys(self) -> None:
         from aethelred.core.wallet import DualKeyWallet, address_from_public_keys

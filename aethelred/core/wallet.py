@@ -355,7 +355,7 @@ class DualKeyWallet:
 
     Features:
     - Composite signatures (ECDSA + Dilithium)
-    - Bech32 address derivation (``aeth1...``)
+    - Bech32 address derivation (``aethel1...``)
     - Key export/import with AES-256 encryption via Fernet
     - Transaction signing with domain separation
     """
@@ -403,11 +403,11 @@ class DualKeyWallet:
         """
         Derive Aethelred address from public keys.
 
-        Address = bech32("aeth", SHA-256(ecdsa_pk || dilithium_pk)[:20])
+        Address = bech32("aethel", SHA-256(ecdsa_pk || dilithium_pk)[:20])
         """
         combined = self.classical.public_key + self.quantum.public_key_bytes()
         address_hash = hashlib.sha256(combined).digest()[:20]
-        return bech32_encode("aeth", address_hash)
+        return bech32_encode("aethel", address_hash)
 
     @property
     def address(self) -> str:
@@ -766,8 +766,8 @@ def address_from_public_keys(
         quantum_pubkey: Dilithium public key
 
     Returns:
-        Aethelred address (aeth1...)
+        Aethelred address (aethel1...)
     """
     combined = classical_pubkey + quantum_pubkey
     address_hash = hashlib.sha256(combined).digest()[:20]
-    return bech32_encode("aeth", address_hash)
+    return bech32_encode("aethel", address_hash)

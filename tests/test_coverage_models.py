@@ -1030,7 +1030,7 @@ class TestRegisteredModel:
             model_id="model_123",
             name="test-model",
             version="1.0.0",
-            owner="aeth1abc",
+            owner="aethel1abc",
             model_hash="abc123",
             circuit_hash="def456",
             verification_key_hash="ghi789",
@@ -1046,7 +1046,7 @@ class TestRegisteredModel:
             model_id="model_123",
             name="test-model",
             version="1.0.0",
-            owner="aeth1abc",
+            owner="aethel1abc",
             model_hash="abc123",
             circuit_hash="def456",
             verification_key_hash="ghi789",
@@ -1073,7 +1073,7 @@ class TestModelRegistry:
         client = MagicMock()
         client._submit_tx = AsyncMock()
         client._query = AsyncMock()
-        client.address = "aeth1testaddress"
+        client.address = "aethel1testaddress"
         return client
 
     def _make_mock_circuit(self):
@@ -1136,7 +1136,7 @@ class TestModelRegistry:
                 "model_id": "model_abc",
                 "name": "test",
                 "version": "1.0.0",
-                "owner": "aeth1x",
+                "owner": "aethel1x",
                 "model_hash": "h1",
                 "circuit_hash": "h2",
                 "status": "active",
@@ -1172,7 +1172,7 @@ class TestModelRegistry:
                 "model_id": "model_xyz",
                 "name": "hash-lookup",
                 "version": "1.0.0",
-                "owner": "aeth1y",
+                "owner": "aethel1y",
                 "model_hash": "hash123",
                 "circuit_hash": "ch1",
             }
@@ -1216,7 +1216,7 @@ class TestModelRegistry:
         client._query.return_value = {"models": []}
         registry = ModelRegistry(client)
         models = await registry.list(
-            owner="aeth1x",
+            owner="aethel1x",
             category="credit",
             tags=["tag1", "tag2"],
             status=ModelStatus.ACTIVE,

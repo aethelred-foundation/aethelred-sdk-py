@@ -44,7 +44,7 @@ class StubAsyncClient:
             return {
                 "job": {
                     "id": "job_123",
-                    "creator": "aeth1creator",
+                    "creator": "aethel1creator",
                     "model_hash": "11" * 32,
                     "input_hash": "22" * 32,
                     "status": "JOB_STATUS_PENDING",
@@ -70,7 +70,7 @@ class StubAsyncClient:
                     "job_id": "job_123",
                     "model_hash": "44" * 32,
                     "status": "SEAL_STATUS_ACTIVE",
-                    "requester": "aeth1req",
+                    "requester": "aethel1req",
                 }
             }
         if path.endswith("/seals"):
@@ -126,7 +126,7 @@ async def test_jobs_module_wait_for_completion_returns_terminal_status() -> None
                 return {
                     "job": {
                         "id": "job_123",
-                        "creator": "aeth1creator",
+                        "creator": "aethel1creator",
                         "model_hash": "11" * 32,
                         "input_hash": "22" * 32,
                         "status": "JOB_STATUS_COMPLETED",

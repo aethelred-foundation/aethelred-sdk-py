@@ -670,8 +670,8 @@ class TestPIIEntityType:
     def test_all_types(self):
         assert PIIEntityType.PERSON == "PERSON"
         assert PIIEntityType.EMAIL_ADDRESS == "EMAIL_ADDRESS"
-        assert PIIEntityType.AETH_ADDRESS == "AETH_ADDRESS"
-        assert PIIEntityType.AETH_TX_HASH == "AETH_TX_HASH"
+        assert PIIEntityType.AETHEL_ADDRESS == "AETHEL_ADDRESS"
+        assert PIIEntityType.AETHEL_TX_HASH == "AETHEL_TX_HASH"
 
 
 class TestPresidioComplianceFramework:
@@ -836,7 +836,7 @@ class TestAethelredAddressRecognizer:
 
     def test_supported_entities(self):
         r = AethelredAddressRecognizer()
-        assert "AETH_ADDRESS" in r.supported_entities
+        assert "AETHEL_ADDRESS" in r.supported_entities
 
     def test_supported_language(self):
         r = AethelredAddressRecognizer()
@@ -844,15 +844,15 @@ class TestAethelredAddressRecognizer:
 
     def test_analyze_match(self):
         r = AethelredAddressRecognizer()
-        addr = "aeth1" + "a" * 39
-        findings = r.analyze(f"Address: {addr}", ["AETH_ADDRESS"])
+        addr = "aethel1" + "a" * 39
+        findings = r.analyze(f"Address: {addr}", ["AETHEL_ADDRESS"])
         assert len(findings) == 1
-        assert findings[0].entity_type == "AETH_ADDRESS"
+        assert findings[0].entity_type == "AETHEL_ADDRESS"
         assert findings[0].score == 0.95
 
     def test_analyze_no_match(self):
         r = AethelredAddressRecognizer()
-        findings = r.analyze("Hello world", ["AETH_ADDRESS"])
+        findings = r.analyze("Hello world", ["AETHEL_ADDRESS"])
         assert len(findings) == 0
 
 
@@ -863,18 +863,18 @@ class TestAethelredTxHashRecognizer:
 
     def test_supported_entities(self):
         r = AethelredTxHashRecognizer()
-        assert "AETH_TX_HASH" in r.supported_entities
+        assert "AETHEL_TX_HASH" in r.supported_entities
 
     def test_analyze_match(self):
         r = AethelredTxHashRecognizer()
         tx_hash = "a" * 64
-        findings = r.analyze(f"TX: {tx_hash}", ["AETH_TX_HASH"])
+        findings = r.analyze(f"TX: {tx_hash}", ["AETHEL_TX_HASH"])
         assert len(findings) == 1
         assert findings[0].score == 0.85
 
     def test_analyze_no_match(self):
         r = AethelredTxHashRecognizer()
-        findings = r.analyze("Hello world", ["AETH_TX_HASH"])
+        findings = r.analyze("Hello world", ["AETHEL_TX_HASH"])
         assert len(findings) == 0
 
 
@@ -916,8 +916,8 @@ class TestPresidioPIIScrubber:
     def test_supported_entities(self):
         scrubber = PresidioPIIScrubber()
         entities = scrubber.supported_entities
-        assert "AETH_ADDRESS" in entities
-        assert "AETH_TX_HASH" in entities
+        assert "AETHEL_ADDRESS" in entities
+        assert "AETHEL_TX_HASH" in entities
 
     def test_add_custom_recognizer(self):
         scrubber = PresidioPIIScrubber()
