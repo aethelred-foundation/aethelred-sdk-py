@@ -61,7 +61,7 @@ class TestJobEvent:
         data = {
             "job_id": "job_123",
             "type": "job.completed",
-            "status": "completed",
+            "status": "JOB_STATUS_COMPLETED",
             "timestamp": "2024-01-01T00:00:00Z",
             "progress_percent": 100,
             "current_step": "done",
@@ -314,11 +314,11 @@ class TestJobSubscription:
 
     def test_matches_status_filter_pass(self):
         sub = JobSubscription("sub_1", status_filter=[JobStatus.COMPLETED])
-        assert sub.matches({"channel": "jobs", "status": "completed"}) is True
+        assert sub.matches({"channel": "jobs", "status": JobStatus.COMPLETED.value}) is True
 
     def test_matches_status_filter_fail(self):
         sub = JobSubscription("sub_1", status_filter=[JobStatus.COMPLETED])
-        assert sub.matches({"channel": "jobs", "status": "pending"}) is False
+        assert sub.matches({"channel": "jobs", "status": JobStatus.PENDING.value}) is False
 
     def test_matches_invalid_status(self):
         sub = JobSubscription("sub_1", status_filter=[JobStatus.COMPLETED])

@@ -233,9 +233,21 @@ def quantize_tensor(tensor: Tensor, qparams: QuantizationParams) -> Tensor:
     # q = round(x / scale) + zero_point
     # q = clamp(q, qmin, qmax)
 
-    scaled = tensor / qparams.scale
+    scale = qparams.scale
+    zp = qparams.zero_point
+
+    # Reshape scale/zero_point for per-channel broadcasting
+    if isinstance(scale, Tensor) and scale.ndim == 1 and tensor.ndim > 1:
+        # Unsqueeze trailing dimensions for broadcasting: (C,) -> (C, 1, ...)
+        for _ in range(tensor.ndim - 1):
+            scale = scale.unsqueeze(-1)
+    if isinstance(zp, Tensor) and zp.ndim == 1 and tensor.ndim > 1:
+        for _ in range(tensor.ndim - 1):
+            zp = zp.unsqueeze(-1)
+
+    scaled = tensor / scale
     rounded = scaled  # Would use .round()
-    shifted = rounded + qparams.zero_point
+    shifted = rounded + zp
 
     # Clamp to valid range
     clamped = shifted  # Would clamp to [qmin, qmax]
@@ -246,7 +258,18 @@ def quantize_tensor(tensor: Tensor, qparams: QuantizationParams) -> Tensor:
 def dequantize_tensor(qtensor: Tensor, qparams: QuantizationParams) -> Tensor:
     """Dequantize a tensor."""
     # x = (q - zero_point) * scale
-    return (qtensor - qparams.zero_point) * qparams.scale
+    scale = qparams.scale
+    zp = qparams.zero_point
+
+    # Reshape scale/zero_point for per-channel broadcasting
+    if isinstance(scale, Tensor) and scale.ndim == 1 and qtensor.ndim > 1:
+        for _ in range(qtensor.ndim - 1):
+            scale = scale.unsqueeze(-1)
+    if isinstance(zp, Tensor) and zp.ndim == 1 and qtensor.ndim > 1:
+        for _ in range(qtensor.ndim - 1):
+            zp = zp.unsqueeze(-1)
+
+    return (qtensor - zp) * scale
 
 
 # ============================================================================

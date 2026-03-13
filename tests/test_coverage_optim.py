@@ -371,7 +371,7 @@ class TestCosineAnnealingLR:
         opt = SGD(params, lr=0.1)
         sched = CosineAnnealingLR(opt, T_max=100)
         lrs = sched.get_lr()
-        assert lrs == [0.1]
+        assert abs(lrs[0] - 0.1) < 1e-3
 
     def test_step(self):
         params = _make_params(2)

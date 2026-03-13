@@ -1031,11 +1031,10 @@ class TestCreateKerasCallback:
             assert isinstance(cb, AethelredKerasCallback)
 
     def test_without_tensorflow_import_error(self):
-        from aethelred.integrations.tensorflow import create_keras_callback
-        with patch("builtins.__import__", side_effect=ImportError("no tensorflow")):
-            # create_keras_callback catches Exception broadly
+        from aethelred.integrations.tensorflow import create_keras_callback, AethelredKerasCallback
+        with patch.dict("sys.modules", {"tensorflow": None}):
+            # create_keras_callback falls back when tensorflow is unavailable
             cb = create_keras_callback()
-            from aethelred.integrations.tensorflow import AethelredKerasCallback
             assert isinstance(cb, AethelredKerasCallback)
 
     def test_with_tensorflow(self):

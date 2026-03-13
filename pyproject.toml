@@ -78,10 +78,10 @@ all = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/AethelredFoundation/AethelredMVP/tree/main/sdk/python"
-Documentation = "https://github.com/AethelredFoundation/AethelredMVP/tree/main/sdk/python#readme"
-Repository = "https://github.com/AethelredFoundation/AethelredMVP"
-Issues = "https://github.com/AethelredFoundation/AethelredMVP/issues"
+Homepage = "https://github.com/AethelredFoundation/aethelred-sdk-py"
+Documentation = "https://github.com/AethelredFoundation/aethelred-sdk-py#readme"
+Repository = "https://github.com/AethelredFoundation/aethelred-sdk-py"
+Issues = "https://github.com/AethelredFoundation/aethelred-sdk-py/issues"
 
 [project.scripts]
 aethelred = "aethelred.cli:main"

@@ -160,6 +160,13 @@ class Device:
         self._initialized = False
         self._context_stack: List['Device'] = []
 
+    def __deepcopy__(self, memo: dict) -> 'Device':
+        # Devices are shared singletons — return self instead of copying
+        return self
+
+    def __copy__(self) -> 'Device':
+        return self
+
     @classmethod
     def get_default(cls) -> 'Device':
         """Get the default compute device."""
@@ -521,6 +528,16 @@ class MemoryPool:
         self._allocation_count = 0
         self._cache_hits = 0
         self._cache_misses = 0
+
+    def __getstate__(self) -> dict:
+        state = self.__dict__.copy()
+        # RLock cannot be pickled/copied — recreate on load
+        del state['_lock']
+        return state
+
+    def __setstate__(self, state: dict) -> None:
+        self.__dict__.update(state)
+        self._lock = threading.RLock()
 
     def allocate(
         self,

@@ -435,7 +435,12 @@ class TestPurePythonHybridVerifier:
         dil_sig = b"\x01" * 32
         header = len(ecdsa_sig).to_bytes(4, "big")
         combined = header + ecdsa_sig + dil_sig
-        result = verifier.verify(b"hello", combined)
+        # Keep mocked dilithium module active during verify() call,
+        # since verify() does a runtime import of DilithiumSigner
+        with patch.dict("sys.modules", {
+            "aethelred.crypto.pqc.dilithium": mock_dil,
+        }):
+            result = verifier.verify(b"hello", combined)
         assert result is True
 
     def test_verify_invalid_ecdsa_len(self):

@@ -287,7 +287,7 @@ class Module(ABC):
 
     def named_children(self) -> Iterator[Tuple[str, 'Module']]:
         """Iterate over named immediate children."""
-        for name, module in self._modules.items():
+        for name, module in list(self._modules.items()):
             if module is not None:
                 yield name, module
 

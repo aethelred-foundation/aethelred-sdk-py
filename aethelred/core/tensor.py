@@ -315,6 +315,31 @@ class Tensor:
         self._grad_fn: Optional[Callable] = None
         self._version = 0
 
+    def __getstate__(self) -> dict:
+        """Support pickling by serializing only essential data."""
+        return {
+            'shape': self._shape,
+            'strides': self._strides,
+            'offset': self._offset,
+            'dtype': self._dtype,
+            'requires_grad': self._requires_grad,
+            'version': self._version,
+        }
+
+    def __setstate__(self, state: dict) -> None:
+        """Restore tensor from pickled state."""
+        self._shape = state['shape']
+        self._strides = state['strides']
+        self._offset = state['offset']
+        self._dtype = state['dtype']
+        self._requires_grad = state['requires_grad']
+        self._version = state['version']
+        self._storage = None
+        self._device = Device.get_default()
+        self._lazy_op = None
+        self._grad = None
+        self._grad_fn = None
+
     @staticmethod
     def _compute_strides(shape: Shape) -> Strides:
         """Compute contiguous strides for a shape."""
