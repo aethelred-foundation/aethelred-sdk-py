@@ -6,7 +6,6 @@
 
 <p align="center">
   <a href="https://pypi.org/project/aethelred"><img src="https://img.shields.io/pypi/v/aethelred?style=flat-square&logo=pypi" alt="PyPI"></a>
-  <a href="https://github.com/aethelred-foundation/aethelred-sdk-py/actions"><img src="https://img.shields.io/github/actions/workflow/status/aethelred/aethelred-sdk-py/py-ci.yml?style=flat-square&label=CI" alt="CI"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache--2.0-blue?style=flat-square" alt="License"></a>
   <img src="https://img.shields.io/pypi/pyversions/aethelred?style=flat-square" alt="Python">
 </p>
