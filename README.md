@@ -5,9 +5,15 @@
 </p>
 
 <p align="center">
+  <a href="https://github.com/aethelred-foundation/aethelred-sdk-py/actions/workflows/repo-security-baseline.yml"><img src="https://img.shields.io/github/actions/workflow/status/aethelred-foundation/aethelred-sdk-py/repo-security-baseline.yml?branch=main&style=flat-square&label=Security" alt="Security"></a>
+  <a href="https://github.com/aethelred-foundation/aethelred-sdk-py/actions/workflows/docs-hygiene.yml"><img src="https://img.shields.io/github/actions/workflow/status/aethelred-foundation/aethelred-sdk-py/docs-hygiene.yml?branch=main&style=flat-square&label=Docs+Hygiene" alt="Docs Hygiene"></a>
   <a href="https://pypi.org/project/aethelred"><img src="https://img.shields.io/pypi/v/aethelred?style=flat-square&logo=pypi" alt="PyPI"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache--2.0-blue?style=flat-square" alt="License"></a>
-  <img src="https://img.shields.io/pypi/pyversions/aethelred?style=flat-square" alt="Python">
+</p>
+<p align="center">
+  <img src="https://img.shields.io/pypi/pyversions/aethelred?style=flat-square&logo=python&logoColor=white" alt="Python">
+  <img src="https://img.shields.io/badge/PQC-Kyber+Dilithium-purple?style=flat-square" alt="PQC">
+  <a href="https://docs.aethelred.io/sdk"><img src="https://img.shields.io/badge/docs-SDK-orange?style=flat-square" alt="Docs"></a>
 </p>
 
 ---
