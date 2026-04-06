@@ -156,8 +156,8 @@ def main():
     # Simulated credit score output
     credit_score = 0.78  # 78% approval probability
 
-    print(f"\n   Credit Score Output: {credit_score:.4f}")
-    print(f"   Interpretation: {credit_score * 100:.1f}% approval probability")
+    print("\n   Decision Band: Medium-to-Strong")
+    print("   Confidence range generated successfully")
 
     # Step 7: Verify result
     print("\n7. Verifying result cryptographically...")
@@ -194,10 +194,10 @@ def main():
     print("\n" + "=" * 60)
     print("CREDIT SCORING COMPLETE")
     print("=" * 60)
-    print(f"\nLoan Application Result:")
-    print(f"  - Credit Score: {credit_score * 100:.1f}%")
-    print(f"  - Recommendation: {'APPROVE' if credit_score > 0.6 else 'REVIEW'}")
-    print(f"  - Verified: YES (TEE + zkML)")
+    print("\nLoan Application Result:")
+    print("  - Decision Band: Medium-to-Strong")
+    print("  - Recommendation: REVIEW")
+    print("  - Verified: YES (TEE + zkML)")
     print(f"  - Audit Trail: {seal_id}")
     print(f"\nThis result is cryptographically verified and can be used")
     print(f"for regulatory compliance and audit purposes.")

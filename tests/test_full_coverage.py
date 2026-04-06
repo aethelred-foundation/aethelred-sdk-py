@@ -1734,8 +1734,9 @@ class TestAsyncClient:
 
     def test_create_from_url(self) -> None:
         from aethelred.core.client import AsyncAethelredClient
+        from urllib.parse import urlparse
         client = AsyncAethelredClient("https://test.example.com")
-        assert "test.example.com" in client.config.rpc_url
+        assert urlparse(client.config.rpc_url).hostname == "test.example.com"
 
     def test_create_from_network(self) -> None:
         from aethelred.core.client import AsyncAethelredClient
